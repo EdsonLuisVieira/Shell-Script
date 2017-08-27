@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cat auxQ4 | tr : +| bc >AUXQ4_somalinha
+tr -s '\n' ':' < auxQ4|tr ':' + | bc>AUXQ4_somatotal

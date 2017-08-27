@@ -1,0 +1,8 @@
+#!/bin/bash
+
+data=$(date "+%y%m%d")
+mkdir -p /home/back/$USER.$data
+zip -r backup$data.zip  ~/ 
+mv  backup$data.zip  /home/back/$USER.$data
+
+echo "backup realizado com sucesso"

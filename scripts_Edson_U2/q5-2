@@ -1,0 +1,7 @@
+#!/bin/bash 
+
+if ( `su $1 &` )
+    then  echo "usuario valido e com loguin autorizado"  
+    else echo "usuario invalido"
+fi 
+    

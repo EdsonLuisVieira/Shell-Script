@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "1.a-Número de usúarios do sistema :"
+cat /etc/passwd  | wc -l
+echo "1.b-Número de usúarios que utilizam o bash:"
+cat /etc/passwd | grep bash | wc -l
+echo "1.c-Número de usúarios que utilizem outro shell(diferente do bash) :"
+cat /etc/passwd |grep -v bash | wc -l
+echo "1.d-Número de usúarios que não possuem permissão para login(nologin ou false):"
+x=$(cat /etc/passwd | grep -c nologin)
+y=$(cat /etc/passwd | grep -c false)
+echo "$[$x+$y]"

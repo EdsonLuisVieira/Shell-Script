@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "datas:"
+cat $1| egrep "[012][0123456789]|[3][01234]/[012][0123456789]/([[:digit:]][2|4])"
+#cat $1| egrep "[[:digit:]]{1,2}/[[:digit:]]{1,2}/[[:digit:]]{2,4}"
+echo "e-mails:"
+cat $1 |egrep  "[[:alnum:]].+@.+[[:alnum:]]"

@@ -1,0 +1,13 @@
+#!/bin/bash 
+aux1=*
+aux2=$(cat /etc/shadow | grep $1 | cut -f2 -d:)
+
+if ( cat /etc/passwd | cut -f1 -d: |grep $1  )
+    then 
+        if [ "$aux2" != "$aux1" ]
+              then  echo "usuario valido e com loguin autorizado"  
+              else echo "usuario valido (interno do sistema)"
+          fi 
+     else echo "usuario invalido e não autorizado"
+fi
+su andre

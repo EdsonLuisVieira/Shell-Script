@@ -1,0 +1,11 @@
+#!/bin/bash
+
+tam=$(du -k $1 | cut -f1)
+#atribui a variavel tam o tamanho do arquivo em kbytes
+if [ $tam -le 100 ] #testa se ele é menor ou igual a 100k
+    then echo "Pequeno"
+elif [ $tam -le 1000 ] #testa se ele é menor ou igual que 1000k
+    then echo "Medio"
+elif [ $tam -ge 1001 ] #testa se ele é maior ou igual que 1001K
+    then echo "Grande"
+fi

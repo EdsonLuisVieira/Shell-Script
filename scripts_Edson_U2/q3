@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if ( echo "Mac: $1" | egrep '\<([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}\>' )
+ then  if ( echo "Ipv4: $2" |egrep "([012][012345][012345].){3}[012][012345][012345]" )
+        then echo "Endereço IP e MAC validos"
+        else echo "Endereço IP invalido"
+   fi
+else echo "Endereço IP e MAC invalidos"
+fi

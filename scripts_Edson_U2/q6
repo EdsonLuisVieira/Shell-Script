@@ -1,0 +1,71 @@
+#!/bin/bash
+echo -e "1-Incluir Atividade"
+echo -e "2-Apagar Atividade"
+echo -e "3-Visualizar Atividades de um dia"
+echo "Digite a opção:"
+read var1
+case $var1 in
+
+1)
+   echo "Digite a Atividade"
+   read atividade
+   echo "Digite a Data(DD/MM/AAAA):"
+   read date
+   if [[ $date ==  [0123][0123456789]/[01][0123456789]/[0123456789][0123456789][0123456789][0123456789] ]]
+      then echo "Digite a Hora(HH:MM):" 
+           read hora
+           if [[ $hora == [012][0123456789]:[0123456][0123456789] ]]
+               then  echo "$date $hora $atividade" >> $1
+                     var="/var/tmp/auxtes"
+                     cat $1 | sort >$var # /var/tmp/auxteste
+                     cat $var | sort >$1
+                     rm $var
+               else echo "Formato invalido"
+           fi
+      else echo "Formato invalido"
+  fi
+ ;;
+2) 
+   echo "1-Excluir por atividade"
+   echo "2-excluir por hora"
+   echo "Digite a opção:"   
+   read opcao  
+   case $opcao in   
+     1) 
+	 echo "Digite a atividade:"
+   	 read ativi
+            if ( lixo=$(cat $1|grep $ativi) )
+	      then sed -i /$ativi/d $1
+	      else echo "Sem atividades"
+	    fi
+        ;;
+     2)
+	 echo "Digite a hora da atividade(HH:MM):"
+         read hora
+         if [[ $hora == [012][0123456789]:[012345][0123456789] ]]
+            then
+		if ( lixo=$(cat $1|grep $hora) )
+		     then  sed -i /$hora/d $1 
+                     else echo "Sem atividades com essa hora"
+                fi
+            else echo "Formato de hora invalida"
+         fi
+       ;;
+  *)echo "Digite uma opção valida" 
+   esac
+   ;;
+ 3) 
+    echo "Digite a data da atividade: (dd/mm/aaaa)"
+    read data
+    	if [[ $data == [0123][0123456789]/[01][0123456789]/[0123456789][0123456789][0123456789][0123456789] ]]
+            then
+	       if (  lixo=$(cat $1 | grep $data)  )
+                  then  cat $1|grep $data
+		  else echo "Nenhuma atividade com esta data cadastrada"
+               fi
+	     else echo "Formato da data invalido"
+	fi
+	;;
+*)  echo "Digite um parametro valido"
+    ;;
+esac

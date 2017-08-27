@@ -1,0 +1,18 @@
+#!/bin/bash
+if [[ `ps|grep $1`  ]] #busca se o pid digitado é valido
+then
+  var=$(ps -axo pid,etime|grep $1|tr -s ' '|cut -f3 -d' ')
+   #atribui a var o tempo que o processo esta rodando trocando o espaço 
+   #usando o campo espaço como delimitador
+  if [[ `echo "$var" | cut -f1 -d:` > 00 ]] #testa se o primeiro campo é > 00
+     then 
+        if [[ `echo "$var"| cut -f2 -d:` > 00 ]] #testa se o segundo campo é >00
+            then 
+                if [[ `echo "$var"| cut -f3 -d:` > 00 ]] #testa se o 3° campo é>00 
+         	   then echo "Mais de uma hora" #00:00:00
+               	   else echo "Menos de uma hora" #00:00
+                fi
+         fi
+  fi
+else echo " PID invalido"
+fi
